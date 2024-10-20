@@ -1,28 +1,40 @@
 <script lang="ts">
   import liff from '@line/liff';
 
+  import ConfirmationForm from './ConfirmationForm.svelte';
+
   async function init() {
     return await liff.init({
       liffId: import.meta.env.VITE_LIFF_ID
     })
+  }
+
+  function close() {
+    liff.closeWindow();
+  }
+
+  function sendMessage(name: string) {
+    liff.sendMessages([
+      {
+        type: "text",
+        text: `お名前: ${name}`
+      }
+    ])
   }
   
   let promise = init();
 </script>
 
 <main>
-  <h1>create-liff-app</h1>
+  <h1>inklinic</h1>
   {#await promise}
-    <p>LIFF init...</p>
+    <p>...</p>
   {:then}
-    <p>LIFF init succeeded.</p>
+    <ConfirmationForm onConfirmation={sendMessage} />
   {:catch e}
     <p>LIFF init failed.</p>
     <p><code>{`${e}`}</code></p>
   {/await}
-  <a href="https://developers.line.biz/ja/docs/liff/" target="_blank" rel="noreferrer">
-    LIFF Documentation
-  </a>
 </main>
 
 <style>
