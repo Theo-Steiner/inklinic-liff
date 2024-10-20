@@ -10,7 +10,19 @@ const onclick = () => {
 }
 </script>
 
+
+<div>
 <label>
-<input type="text" placeholder="お名前" bind:value/>
+お名前
+<input type="text" placeholder="お客様のお名前" bind:value/>
 </label>
 <button type="submit" { onclick }>ご予約の確認</button>
+</div>
+
+<style>
+div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+</style>

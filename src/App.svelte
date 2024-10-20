@@ -1,5 +1,6 @@
 <script lang="ts">
   import liff from '@line/liff';
+  import logo from '../public/inklinic.png'
 
   import ConfirmationForm from './ConfirmationForm.svelte';
 
@@ -20,13 +21,14 @@
         text: `お名前: ${name}`
       }
     ])
+    close()
   }
   
   let promise = init();
 </script>
 
 <main>
-  <h1>inklinic</h1>
+  <img src={logo} alt="inklinic" />
   {#await promise}
     <p>...</p>
   {:then}
