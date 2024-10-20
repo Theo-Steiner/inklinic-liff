@@ -1,6 +1,6 @@
 <script lang="ts">
   import liff from '@line/liff';
-  import logo from '../public/inklinic.png'
+  import logo from '../public/inklinic.png?url'
 
   import ConfirmationForm from './ConfirmationForm.svelte';
 
@@ -47,5 +47,9 @@
     text-align: center;
     color: #2c3e50;
     margin-top: 60px;
+  }
+
+  img {
+  width: 30vw;
   }
 </style>
