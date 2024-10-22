@@ -1,42 +1,54 @@
 <script lang="ts">
-  import liff from '@line/liff';
-  import logo from '../public/inklinic.png?url'
+  import { t } from "./i18n";
+  import liff from "@line/liff";
+  import logo from "../public/inklinic.png?url";
+  import Error from "./Error.svelte";
 
-  import ConfirmationForm from './ConfirmationForm.svelte';
+  import ConfirmationForm from "./ConfirmationForm.svelte";
 
   async function init() {
     return await liff.init({
-      liffId: import.meta.env.VITE_LIFF_ID
-    })
+      liffId: import.meta.env.VITE_LIFF_ID,
+    });
   }
+
+  let error = $state();
 
   function close() {
     liff.closeWindow();
   }
 
-  function sendMessage(name: string) {
-    liff.sendMessages([
-      {
-        type: "text",
-        text: `お名前: ${name}`
-      }
-    ])
-    close()
+  async function sendMessage(name: string) {
+    try {
+      await liff.sendMessages([
+        {
+          type: "text",
+          text: t("successMessage", { name }),
+        },
+      ]);
+      close();
+    } catch (e) {
+      error = e;
+    }
   }
-  
+
   let promise = init();
 </script>
 
 <main>
   <img src={logo} alt="inklinic" />
-  {#await promise}
-    <p>...</p>
-  {:then}
-    <ConfirmationForm onConfirmation={sendMessage} />
-  {:catch e}
-    <p>LIFF init failed.</p>
-    <p><code>{`${e}`}</code></p>
-  {/await}
+  {#if error}
+    <Error />
+  {:else}
+    {#await promise}
+      <p>...</p>
+    {:then}
+      <h3>{t("greeting")}</h3>
+      <ConfirmationForm onConfirmation={sendMessage} />
+    {:catch}
+      <Error />
+    {/await}
+  {/if}
 </main>
 
 <style>
@@ -49,7 +61,18 @@
     margin-top: 60px;
   }
 
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --primary: 222.2 47.4% 11.2%;
+    --secondary: 210 40% 96.1%;
+  }
+
   img {
-  width: 30vw;
+    width: 40vw;
   }
 </style>
