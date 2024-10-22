@@ -20,10 +20,12 @@
 
   async function sendMessage(name: string) {
     try {
+      const text = t("successMessage", { name });
+      console.log(text);
       await liff.sendMessages([
         {
           type: "text",
-          text: t("successMessage", { name }),
+          text,
         },
       ]);
       close();

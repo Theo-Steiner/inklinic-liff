@@ -16,10 +16,10 @@ export const t = (
   key: keyof typeof messages,
   params: Record<string, string> = {},
 ) => {
-  const rawMessage = messages[key];
+  let message: string = messages[key];
   for (const [paramKey, paramValue] of Object.entries(params ?? {})) {
-    rawMessage.replace(`{${paramKey}}`, paramValue);
+    message = message.replace(`{${paramKey}}`, paramValue);
   }
-  rawMessage.replace(/\n/g, "<br>");
-  return rawMessage;
+  message = message.replace(/\n/g, "<br>");
+  return message;
 };
