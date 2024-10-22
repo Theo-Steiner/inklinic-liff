@@ -50,7 +50,7 @@
     padding-right: 0.75rem;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
-    font-size: 0.875rem;
+    font-size: 14px;
     outline: none;
     transition:
       border-color 0.15s ease-in-out,
