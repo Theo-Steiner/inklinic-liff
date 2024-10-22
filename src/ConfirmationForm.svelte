@@ -7,7 +7,8 @@
   let { onConfirmation }: Props = $props();
 
   let value = $state("");
-  const onsubmit = () => {
+  const onsubmit = (e: SubmitEvent) => {
+    e.preventDefault();
     onConfirmation(value);
   };
 </script>
