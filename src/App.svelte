@@ -65,6 +65,12 @@
 </main>
 
 <style>
+  :global(body) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   main {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -72,6 +78,7 @@
     text-align: center;
     color: #2c3e50;
     margin-top: 60px;
+    max-width: 80vw;
   }
 
   :root {
