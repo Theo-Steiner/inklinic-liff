@@ -10,6 +10,10 @@ const messages = {
     "ご予約を確定するために、お名前をフルネームでトークにお送りください。\nお送りいただいた時点で、予約確定となります。",
   successMessage:
     "【{name}】さまのご予約を確定いたしました。ご来店をお待ちしております。",
+  contactRequestLabel: "お問合せ",
+  contactRequestMessage: "【お問合せ】",
+  contactRequestDescription:
+    "まだご予約はしておらず、お問い合わせのみの場合はこちらを押してください",
 } as const;
 
 export const t = (

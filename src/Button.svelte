@@ -1,10 +1,16 @@
 <script lang="ts">
-  import { t } from "./i18n";
-
-  const { disabled }: { disabled?: boolean } = $props();
+  const {
+    label,
+    ...props
+  }: {
+    disabled?: boolean;
+    label: string;
+    type: "submit" | "button";
+    onclick?: () => void;
+  } = $props();
 </script>
 
-<button {disabled} type="submit">{t("buttonLabel")}</button>
+<button {...props}>{label}</button>
 
 <style>
   button {

@@ -18,10 +18,18 @@
     liff.closeWindow();
   }
 
-  async function sendMessage(name: string) {
+  async function sendConfirmation(name: string) {
+    const message = t("successMessage", { name });
+    await sendMessage(message);
+  }
+
+  async function sendContactRequest() {
+    const message = t("contactRequestMessage");
+    await sendMessage(message);
+  }
+
+  async function sendMessage(text: string) {
     try {
-      const text = t("successMessage", { name });
-      console.log(text);
       await liff.sendMessages([
         {
           type: "text",
@@ -46,7 +54,10 @@
       <p>...</p>
     {:then}
       <h3>{t("greeting")}</h3>
-      <ConfirmationForm onConfirmation={sendMessage} />
+      <ConfirmationForm
+        onConfirmation={sendConfirmation}
+        onRequestContact={sendContactRequest}
+      />
     {:catch}
       <Error />
     {/await}

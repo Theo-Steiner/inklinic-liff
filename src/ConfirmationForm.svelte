@@ -3,8 +3,9 @@
   import { t } from "./i18n";
   interface Props {
     onConfirmation: (name: string) => void;
+    onRequestContact: () => void;
   }
-  let { onConfirmation }: Props = $props();
+  let { onConfirmation, onRequestContact }: Props = $props();
 
   let value = $state("");
   const onsubmit = (e: SubmitEvent) => {
@@ -19,7 +20,14 @@
   </label>
   <input id="name" type="text" placeholder={t("inputPlaceholder")} bind:value />
   <span>{t("inputTip")}</span>
-  <Button disabled={!value.trim()} />
+  <Button disabled={!value.trim()} label={t("buttonLabel")} type="submit" />
+  <br />
+  <span>{t("contactRequestDescription")}</span>
+  <Button
+    label={t("contactRequestLabel")}
+    type="button"
+    onclick={onRequestContact}
+  />
 </form>
 
 <style>
