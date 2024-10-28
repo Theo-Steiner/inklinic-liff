@@ -53,7 +53,7 @@
     {#await promise}
       <p>...</p>
     {:then}
-      <h3>{t("greeting")}</h3>
+      <p>{t("greeting")}</p>
       <ConfirmationForm
         onConfirmation={sendConfirmation}
         onRequestContact={sendContactRequest}
