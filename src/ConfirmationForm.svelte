@@ -47,8 +47,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 1em;
-    font-weight: 600;
+    font-size: 1.17em;
+    font-weight: bold;
   }
 
   input {
